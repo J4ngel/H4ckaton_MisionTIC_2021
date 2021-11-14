@@ -1,5 +1,6 @@
 import os
 import hashlib
+from re import search
 import db_manager
 import verifications
 
@@ -221,14 +222,48 @@ def act_pass_empleado():
     return redirect("/empleado")
 
 # Yessid: Pagina de productos (clientte)
-@app.route('/productos')
+@app.route('/tienda')
 def tienda():
-    return render_template('tienda.html')
+    data=db_manager.lista_productos()
+    print(data[0])
+    return render_template('tienda.html',data=data)
 
-# Yessid: Pagina de productos (empleado)
-@app.route('/productos/enlatados')
-def precios():
-    return render_template('productoEnlatado.html')
+# Yessid: Pagina de productos varios (empleado)
+@app.route('/productos/<produc>')
+def preciosV(produc):
+    idprod=produc
+    produc=db_manager.consulta_produc(idprod)
+    print(produc)
+    return render_template('productoVarios.html',produc=produc)
+
+#carlosLuis:Pagina para actualizar producto
+@app.route('/actualizar',methods=['POST'])
+def actualizar_produc():
+    if request.method == 'POST':
+        id=escape(request.form['idproduc'])
+        nombre=escape(request.form['nombre'])
+        precio=escape(request.form['precio'])
+        porcentaje=escape(request.form['porcentaje'])
+        categoria=escape(request.form['categoria'])
+        bono=escape(request.form['bono'])
+        db_manager.actualizar_produc(id,nombre,precio,porcentaje,categoria,bono)
+        flash("producto actualizado")
+        print("producto actualizado")
+        q=db_manager.consulta_produc(id)[2]
+
+        if q == 'Cereal':
+            return  redirect('/login/dashboard/productos/Cereal')
+        elif q == 'Frutos secos':
+            return  redirect('/login/dashboard/productos/Frutos secos')
+        elif q == 'Enlatados':
+            return  redirect('/login/dashboard/productos/Enlatados')
+        else:
+            return  redirect('/login/dashboard/productos/Otros')
+
+# Carlos: Pagina para el carrito de compras
+@app.route('/tienda/compras')
+def carrito():
+    return render_template("compras.html")
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -729,3 +764,52 @@ def eliminar_clientes():
 @app.route('/login/dashboard/ventas', methods = ['GET', 'POST'])
 def dashboard_ventas():
     return render_template('dashboard/dashboard_ventas.html')
+
+#Luis (Eliminar producto)
+@app.route('/eliminar_producto/<produc>')
+def eliminar_producto(produc):
+    id=produc
+    print(id)
+    q=db_manager.consulta_produc(id)[2]
+    db_manager.eliminar_producto(id)
+    if q == 'Cereal':
+        return  redirect('/login/dashboard/productos/Cereal')
+    elif q == 'Frutos secos':
+        return  redirect('/login/dashboard/productos/Frutos secos')
+    elif q == 'Enlatados':
+        return  redirect('/login/dashboard/productos/Enlatados')
+    else:
+        return  redirect('/login/dashboard/productos/Otros')
+
+
+#--------------------Yessid---------------------
+
+@app.route('/productos/nuevo', methods=['GET','POST'])
+def nuevoP():
+    if request.method == 'POST':
+
+        if 'user' in session and session['rol'] == 1 :
+            return redirect('/')
+        else:
+            codigo          = escape(request.form['codigo'])
+            nombre          = escape(request.form['nombre'])
+            tipo            = escape(request.form['tipo'])
+            cantidad        = escape(request.form['cantidad'])
+            unidad          = escape(request.form['unidad'])
+            precio          = escape(request.form['precio'])
+            descuento       = escape(request.form['descuento'])
+            bono            = escape(request.form['bono'])
+            acumulado       = escape(request.form['acumulado'])
+            
+            search=db_manager.sql_search_product(codigo)
+            
+            if len(search) > 0:
+                flash ("El producto ya esta creado")
+                return render_template('productoNuevo.html')
+            else: 
+                db_manager.nuevo_producto(codigo, nombre, tipo, cantidad, unidad, precio, descuento, bono, acumulado)
+                flash ("Producto creado de forma exitosa")
+                return render_template('productoNuevo.html')
+
+    else: 
+        return render_template('productoNuevo.html')

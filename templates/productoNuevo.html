@@ -1,0 +1,106 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Productos Edicion{% endblock %}
+
+{% block alertas %}
+    {% for message in get_flashed_messages() %}            
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block desarrollo %}
+<br><br><br>    
+<div class="col"></div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-4"></div>
+        <div class="col-4 ">
+            <h2></h2>
+            <div class="imagen d-flex justify-content-center">
+            <img src="{{url_for('static',filename='images/alimentos.jpg')}}"  alt="User" width="100%">
+            </div>
+            <br>
+            <br>
+            <form action="/productos/nuevo", method="post">
+                <label for="id_field" class="form-label" name="nombre_producto">Codigo del producto</label>
+                <input type="text" class="form-control" name="codigo" id="id_field">
+                <br>
+                <label for="id_field" class="form-label">Nombre del producto</label>
+                <input type="text" class="form-control" name="nombre" id="id_field">
+                <br>
+                <label for="id_field" class="form-label">Tipo de producto</label>
+                <input type="text" class="form-control" name="tipo" id="id_field">
+                <br>
+                <label for="id_field" class="form-label">Cantidad</label>
+                <input type="text"  class="form-control" name="cantidad" id="id_field">
+                <br>
+                <label for="id_field" class="form-label">Tipo de unidad</label>
+                <input type="text" class="form-control" name="unidad" id="id_field">
+                <br>
+                <label for="id_field" class="form-label" >Precio del producto</label>
+                <input type="text" class="form-control" name="precio" id="id_field">
+                <br>
+                <label for="id_field" class="form-label">Descuento</label>
+                <input type="text" class="form-control" name="descuento" id="id_field">
+                <br>
+                <label for="id_field" class="form-label">Bono</label>
+                <input type="text" class="form-control" name="bono" id="id_field">
+                <br>
+                <label for="id_field" class="form-label">Descuento acumulable</label>
+                <input type="text" class="form-control" name="acumulado" id="id_field">
+                <br>
+                <button type="submit" class="btn btn-primary" id="btn-actualizar">Crear nuevo</button>
+            </form>
+        </div>
+
+        <!-- <div class="col-1 align-items-right">
+            <style>
+                .vl {
+                    border-left: 6px solid rgb(40, 95, 245);
+                    position: relative;
+                    left: 25px;
+                    height: 100%;
+                }
+            </style>
+            <div class="vl"></div>
+        </div> -->
+
+        <!-- <div class="col-5 text-left">
+            
+            <br>
+            <h1>Perfil del Empleado</h1>
+            <h2>{{usuario}} </h2>
+            <br>
+            <br>
+            <br>
+            <label for="id_frase" class="form-label">Frase de Seguridad</label>
+            <input type="text" class="form-control" placeholder="Frase de Seguridad (Escriba para cambiar)" id="id_frase">
+            <br>
+            <button type="button" class="btn btn-primary" id="btn-frase">Verificar</button>
+            <br>
+            <br>
+            <label for="id_cambiar" class="form-label">Cambiar Contraseña</label>
+            <input type="text" class="form-control" placeholder="Cambiar contraseña (Escriba para cambiar)" id="id_cambiar">
+            <br>
+            <label for="id_cambiar" class="form-label">Confirmar Contraseña</label>
+            <input type="text" class="form-control" placeholder="Confirmar contraseña (Escriba para cambiar)" id="id_cambiar">
+            <br>
+            <button type="button" class="btn btn-primary" id="btn-cambiar">Cambiar</button> 
+
+        </div> -->
+
+        <div class="col-4">
+        </div>
+
+        <!-- <div class="col-3 text-right">
+            <button type="button" class="btn btn-primary" id="btn-carro">Carrito</button> 
+            <button type="button" class="btn btn-primary" id="btn-">Wish List</button> 
+            <button type="button" class="btn btn-primary" id="btn-actualizar">Logout</button> 
+        </div> -->
+    </div>
+    
+
+    <div class="col"></div>
+{% endblock %}

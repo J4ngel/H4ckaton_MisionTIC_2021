@@ -335,3 +335,77 @@ def obtener_info_usuario(id_usuario):
     except Error:
         status['error'] = "Algo salió mal"
         return status
+
+#--------------------------------Yessid------------------
+def lista_productos():
+    status = { 'error':None, 'data':None}
+    try:
+        con=sql_connection()
+        cur = con.cursor()
+        query1=cur.execute("SELECT * FROM Productos").fetchall()
+        if query1!=None:
+            status['data']= query1 #status['data']=[[]]
+            print(status['data'])
+            return status['data']
+        else:
+                
+            status['error'] = "Ocurrio un error"
+            return status
+                      
+    except Error:
+        status['error'] = "Algo salió mal "+ Error
+        return status
+
+def consulta_produc(id):
+    status = {'error':None, 'data':None}
+    try:
+        con=sql_connection()
+        cur = con.cursor()
+        query1=cur.execute("SELECT * FROM Productos WHERE Codigo_del_producto=?",[id]).fetchone()
+        if query1!=None:
+            status['data']= query1 #status['data']=[[]]
+            print(status['data'])
+            return status['data']
+        else:                    
+            status['error'] = "Ocurrio un error"
+            return status
+                      
+    except Error:
+        status['error'] = "Algo salió mal "+ Error
+        return status
+
+def actualizar_produc(id,nombre,precio,procentaje,categoria,bono):
+    try:
+        con=sql_connection()
+        cur = con.cursor()
+        query1=cur.execute("UPDATE Productos SET Nombre_del_producto =?,Precio_unitario =?,Porcentaje_de_promocion =?,Categoria_del_producto =?,Bono =? WHERE Codigo_del_producto =?",[nombre,precio,procentaje,categoria,bono,id])
+        con.commit()
+        print("actualizo")          
+    except Error:
+        return "Error"
+
+#Luis --> Eliminar Producto
+def eliminar_producto(id):
+    try:
+        con=sql_connection()
+        cur = con.cursor()
+        query1=cur.execute("DELETE FROM Productos WHERE Codigo_del_producto = ?",[id])
+        con.commit()
+                 
+    except Error:
+        return "Error"
+
+#----->Yessid / Jackie (Registro de un producto nuevo)
+def nuevo_producto(codigo, nombre, tipo, cantidad, unidad, precio, descuento, bono, acumulado):
+    status={'state':True, 'error':None}
+    
+    try:
+        con=sql_connection()
+        cur = con.cursor()
+        cur.execute("INSERT INTO Productos(Codigo_del_producto, Nombre_del_producto, Tipo_producto, Cantidad_de_unidades_actuales_totales_en_el_inventario, Tipo_de_unidad, Precio_unitario, Porcentaje_de_promocion, Bono, Acumulados_descontados) VALUES (?,?,?,?,?,?,?,?,?)",(codigo, nombre, tipo, cantidad, unidad, precio, descuento, bono, acumulado,))
+        con.commit()
+            
+    except Error:
+        status['state'] = False
+        status['error'] = "Algo salió mal"
+        return status
