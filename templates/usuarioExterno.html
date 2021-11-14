@@ -1,0 +1,106 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Usuario Externo{% endblock %}
+
+{% block alertas %}
+<div class="row">
+    {% for message in get_flashed_messages() %}
+    <div class="col"></div>
+    <div class="col-6 text-center">
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    </div>
+    <div class="col"></div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block desarrollo %}
+    <br><br><br>
+    <div class="col"></div>
+
+    <form action="/usuario" class="row d-flex justify-content-center" Style="margin-top:5%" method="POST" id="form_usuario_externo" enctype="multipart/form-data">
+        <div class="col-1">
+        </div>
+        <div class="col-4 ">
+            <div class="imagen d-flex justify-content-center">
+                <img src="{{url_for('static',filename='images/user.png')}}"  alt="User" width="40%">
+            </div>
+            <br>
+            <br>
+            <label for="id_field" class="form-label">Cedula</label>
+            <input type="text" readonly class="form-control" value={{cedula}} id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Fecha de Nacimiento</label>
+            <input type="text" readonly class="form-control" value={{fecha}} id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" value={{nombre}} id="id_field" name="name">
+            <br>
+            <label for="id_field" class="form-label">Sexo</label>
+            <input type="text" readonly class="form-control" value={{sexo}} id="id_field"><br>
+            <label for="id_field" class="form-label">Dirección</label>
+            <input type="text" class="form-control" value={{direccion}} id="id_field" name="addr"><br>
+            <label for="id_field" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" value={{ciudad}} id="id_field" name="city">
+            <br>
+            <button type="submit" class="btn btn-primary" Style="padding: 10px; margin-left: 15%; width:25%;" id="btn_info"><b>Guardar cambios</b></button>
+            <a href="/eliminar_cuenta"><button type="button" class="btn btn-primary" Style="padding: 8px; margin-left: 10%; width:25%;" id="btn-actualizar"><b>Eliminar cuenta</b></button></a>
+        </div>
+
+        <div class="col-1 align-items-right">
+            <style>
+                .vl {
+                    border-left: 6px solid rgb(40, 95, 245);
+                    position: relative;
+                    left: 25px;
+                    height: 100%;
+                }
+            </style>
+            <div class="vl"></div>
+        </div>
+
+        <div class="col-5 text-left">
+            
+            <br>
+            <h1>Mi Perfil</h1>
+            <h3>{{username}}</h3>
+            <br>
+            <br>
+            <label for="id_frase" class="form-label">Contraseña actual</label>
+            <input type="password" class="form-control" placeholder="Digite su contraseña actual para efectuar los cambios de frase de seguridad y cambio de contraseña" id="id_frase" name="old_pass">
+            <br>
+            <label for="id_frase" class="form-label">Frase de Seguridad</label>
+            <input type="password" class="form-control" placeholder="Digite su nueva Frase de seguridad" id="id_frase" name="phrase">
+            <br>
+            <button type="submit" class="btn btn-primary" Style="padding: 10px; margin-left: 80%; width:20%;" id="btn_frase"><b>Guardar cambios</b></button>
+            <br>
+            <br>
+            <label for="id_cambiar" class="form-label">Nueva Contraseña</label>
+            <input type="password" class="form-control" placeholder="Digite su nueva contraseña" id="id_cambiar" name="new_pass">
+            <br>
+            <label for="id_cambiar" class="form-label">Confirmar Contraseña</label>
+            <input type="password" class="form-control" id="id_cambiar" name="check_pass">
+            <br>
+            <button type="submit" class="btn btn-primary" Style="padding: 10px; margin-left: 80%; width:20%;" id="btn_pass"><b>Guardar cambios</b></button> 
+
+        </div>
+
+        <div class="col-1">
+        </div>
+
+        <!-- <div class="col-3 text-right">
+            <button type="button" class="btn btn-primary" id="btn-carro">Carrito</button> 
+            <button type="button" class="btn btn-primary" id="btn-">Wish List</button> 
+            <button type="button" class="btn btn-primary" id="btn-actualizar">Logout</button> 
+        </div> -->
+    </form>
+    
+
+    <div class="col"></div>
+{% endblock %}
+
+{% block script_especifico %}
+<script src="{{url_for('static', filename='js/usuario_externo.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,52 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Recuperar Contrasena{% endblock %}
+
+{% block alertas %}
+<div class="row">
+    {% for message in get_flashed_messages() %}
+    <div class="col"></div>
+    <div class="col-6 text-center">
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    </div>
+    <div class="col"></div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block desarrollo %}
+<br><br>
+<div class="col"></div>
+
+    <div class="col-3">
+        <form class="align-items-center" method="POST">
+            <div class="mb-3 text-center">
+                <img src="{{url_for('static',filename='images/apple_gear.png')}}" alt="User" width="70%" height="70%">
+            </div>
+
+            <div class="mb-3">
+                <h5> <label for="id_field" class="form-label">Digite la nueva contraseña</label> </h5>
+                <input type="password" class="form-control" placeholder="Password" id="id_field" name="password">
+            </div>
+            <br>
+            <div class="mb-3">
+                <h5> <label for="password_field" class="form-label">Repita la nueva contraseña</label> </h5> 
+                <input type="password" class="form-control" id="password_field" placeholder="Password" name="check_pass">
+                <div id="info" class="form-text">Nota: Las 2 contraseñas tienen que ser iguales</div>
+            </div>
+
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">Continuar</button>
+                <button type="button" class="btn btn-primary">Cancelar</button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col"></div>
+
+
+
+{% endblock %}

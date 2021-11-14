@@ -1,0 +1,57 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Eliminar empleados{% endblock %}
+
+{% block alertas %}
+<div class="row">
+    {% for message in get_flashed_messages() %}
+    <div class="col"></div>
+    <div class="col-6 text-center">
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    </div>
+    <div class="col"></div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block desarrollo %}
+<div class="col"></div>
+
+{% if 'tipo' in session and session['tipo']==2 %}
+<form action='/login/dashboard/empleados/eliminar' class="col-3" method="post">
+    <div class="mb-3 text-center" Style="margin-top: 10%;">
+        <img src="{{url_for('static',filename='images/eliminar.png')}}" alt="Eliminar" width="200px" height="200px">
+    </div>
+
+    <div class="mb-3">
+        <label for="id_field" class="form-label" Style="font-size:15px">Cedula del empleado</label>
+        <input type="text" class="form-control" placeholder="Digite la cedula del empleado a editar (sin espacios)" id="id_field" name="cedula">
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary" Style="padding: 8px; width:20%; margin-left:25%"><b>Eliminar</b></button>
+        <a href='/login/dashboard'><button type="button" class="btn btn-primary" Style="padding: 8px; width:26%; margin-left: 5%;"><b>Volver</b></button></a>
+    </div>
+</form>
+{% else %}
+<form action='/login/dashboard/clientes/eliminar' class="col-3" method="post">
+    <div class="mb-3 text-center" Style="margin-top: 10%;">
+        <img src="{{url_for('static',filename='images/eliminar.png')}}" alt="Eliminar" width="200px" height="200px">
+    </div>
+
+    <div class="mb-3">
+        <label for="id_field" class="form-label" Style="font-size:15px">Cedula del usuario</label>
+        <input type="text" class="form-control" placeholder="Digite la cedula del empleado a editar (sin espacios)" id="id_field" name="cedula">
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary" Style="padding: 8px; width:20%; margin-left:25%"><b>Eliminar</b></button>
+        <a href='/login/dashboard'><button type="button" class="btn btn-primary" Style="padding: 8px; width:26%; margin-left: 5%;"><b>Volver</b></button></a>
+    </div>
+</form>
+{% endif %}
+
+<div class="col"></div>
+{% endblock %}
