@@ -1,0 +1,91 @@
+{% extends "dashboard/constante_dashboard.html" %}
+
+{% block title %}
+    Productos - Dashboard
+{% endblock %}
+
+{% block contenido %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Clientes</h1>
+    <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+        For more information about DataTables, please visit the <a target="_blank"
+            href="https://datatables.net">official DataTables documentation</a>.</p>-->
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+          <div class="row d-flex flex-row-start">                
+                <div class="d-grid gap-2 d-md-block">
+                    <!-- bar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post" >
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-1 small" placeholder="buscar por..."
+                                aria-label="Search" aria-describedby="basic-addon2" name="cliente_buscado">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" onclick="location='/login/dashboard/clientes'">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end Search -->
+                    <a href="/registro/usuario"><button class="btn btn-primary" type="button">Crear</button></a>
+                    <button class="btn btn-primary" type="button">Editar</button>
+                    <button class="btn btn-primary" type="button">Eliminar</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="tablaClientes" width="70%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            {% for item in columnas %}
+                            <th>{{ item }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            {% for item in columnas %}
+                            <th>{{ item }}</th>
+                            {% endfor %}
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for user in clientes %}
+                        <tr>
+                            {% for  item in user %}
+                                <td>{{ item }}</td>
+                            {% endfor %} 
+                        </tr>
+                        {% endfor %}
+
+                        <tr>
+                            {% for  item in coincidencias %}
+                            <td>{{ item }}</td>
+                            {% endfor %}
+                        </tr> 
+                        
+                                              
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+
+<!-- End of Main Content -->
+
+{% endblock %}
+
+
+
+

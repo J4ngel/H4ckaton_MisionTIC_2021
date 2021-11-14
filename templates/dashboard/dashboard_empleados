@@ -1,0 +1,10 @@
+{% extends "dashboard/constante_dashboard.html" %}
+
+{% block title %}
+    Productos - Dashboard
+{% endblock %}
+
+{% block contenido %}
+
+
+{% endblock %}

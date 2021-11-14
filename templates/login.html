@@ -1,0 +1,79 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Usuario Externo{% endblock %}
+
+{% block alertas %}
+<div class="row">
+    {% for message in get_flashed_messages() %}
+    <div class="col"></div>
+    <div class="col-6 text-center">
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    </div>
+    <div class="col"></div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block desarrollo %}
+<br><br><br>
+    <div class="col"></div>
+
+    <div class="col-3">
+        <form action="/login" class="align-items-center" style="margin-top:36px" method="POST" id="form_login" enctype="multipart/form-data">
+            <div class="mb-3 text-center">
+                <img src="{{url_for('static',filename='images/user.png')}}" alt="User" width="200px" height="200px">
+            </div>
+
+            <div class="mb-3">
+                <label for="id_field" class="form-label">User Name</label>
+                <input type="text" class="form-control" placeholder="Digite su nombre de usuario" id="id_field" name="username">
+            </div>
+            <div class="mb-3">
+                <label for="password_field" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password_field" placeholder="Password" name="password">
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary" Style="padding: 8px; width:20%; margin-left:25%"><b>Entrar</b></button>
+                <a href="{{url_for('registrarse')}}"><button type="button" class="btn btn-primary" Style="padding: 8px; width:26%; margin-left: 5%;"><b>Registrarse</b></button></a>
+            </div>
+
+            <div class="accordion accordion-flush" id="recuperar_info">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                      <button class="accordion-button collapsed" style="border: 1px solid" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Recuperar información
+                      </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="mb-3"></div>
+
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Digite su nombre completo" id="name" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="date" class="form-control" id="date" name="birthday">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Respuesta a pregunta de seguridad" id="security_word" name="phrase">
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-warning" id="btn_recuperar_datos" Style="padding: 8px; width:55%"><b>Recuperar nombre de usuario</b></button>
+                            <button type="submit" class="btn btn-warning" id="btn_recuperar_pass" Style="padding: 8px; width:42%; margin-left: 2%;"><b>Recuperar contraseña</b></button>            
+                        </div>
+
+                    </div>
+                  </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col"></div>
+{% endblock %}
+
+{% block script_especifico %}
+<script src="{{url_for('static', filename='js/login.js')}}"></script>
+{% endblock %}

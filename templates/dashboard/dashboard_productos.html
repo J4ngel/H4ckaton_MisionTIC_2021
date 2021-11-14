@@ -1,0 +1,105 @@
+{% extends "dashboard/constante_dashboard.html" %}
+
+{% block title %}
+    Productos - Dashboard
+{% endblock %}
+
+{% block contenido %}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">{{ tipo_producto }}</h1>
+    <!--<p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+        For more information about DataTables, please visit the <a target="_blank"
+            href="https://datatables.net">official DataTables documentation</a>.</p>-->
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row d-flex flex-row-start">                
+                <div class="d-grid gap-2 d-md-block">
+                    <!-- bar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post">
+                        <div class="input-group">
+                            <input id="input-search" type="search" class="form-control bg-light border-1 small" placeholder="buscar por..."
+                                aria-label="Search" aria-describedby="basic-addon2" name="codigo_producto">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" onclick="location='/login/dashboard/productos'">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end Search -->
+                    <a href="url_for('/nuevoP')"><button class="btn btn-primary" type="button">Crear</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            
+                <div class="table-responsive">
+                <table class="table table-bordered" id="tablaProductos" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            {% for item in columnas %}
+                            <th scope="col">{{ item }}</th>
+                            {% endfor %}
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        {% for producto in productos %}
+                        <tr>
+                  
+                            {% for item in producto %}
+                                <td>{{ item }}</td>
+                                
+                            {% endfor %}
+                            <td><a href="{{url_for('preciosV',produc=producto[0])}}"><button class="btn btn-primary" type="button">Editar</button></a></td>
+                               <td><a href="{{url_for('eliminar_producto',produc=producto[0])}}"><button class="btn btn-primary" type="button">Eliminar</button></a></td>
+                        </tr>
+                        {% endfor %}
+                        
+                        <tr>
+                            {% for  item in coincidencias %}
+                            <td>{{ item }}</td>
+                            {% endfor %} 
+                        </tr>
+                    </tbody>
+                </table>
+            
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
+
+
+<!-- End of Main Content -->
+
+{% endblock %}
+
+{% block footer %}
+
+<!-- Bootstrap core JavaScript-->
+<script src="{{ url_for('static', filename = 'vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename = 'vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ url_for('static', filename = 'vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ url_for('static', filename = 'js/sb-admin-2.min.js')}}"></script>
+
+<!-- Page level plugins -->
+<script src="{{ url_for('static', filename = 'vendor/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ url_for('static', filename = 'vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ url_for('static', filename = 'js/demo/datatables-demo.js')}}"></script>
+{% endblock %}

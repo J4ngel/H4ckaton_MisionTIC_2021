@@ -1,0 +1,190 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Productos Enlatados{% endblock %}
+
+{% block alertas %}
+<div class="row" style="background-color: rgba(0,0,0,0.8);">
+    {% for message in get_flashed_messages() %}
+    <div class="col"></div>
+    <div class="col-6 text-center">
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    </div>
+    <div class="col"></div>
+    {% endfor %}
+</div>
+{% endblock%}
+
+{% block desarrollo %}
+<h1></h1>
+
+<!-- Inicia seccion enlatados -->
+<br>
+<div id= "row align-items-center  text-white">
+    <div class="row-10 "></div>
+    <div class="row-2 text-right">
+        <button type="submit" class="btn btn-primary" onclick="history.go(-1);">Regresar</button>
+    </div>
+</div>
+
+<br>
+
+<div id="fruits" class="section dark_bg layout_padding left_white text-white" >
+    <div class="container" style="background-color: #4e73df">
+        <div class="row">
+           <div class="col-md-12">
+                <div class="heading full text_align_center">
+                    <br>
+                    <h2 class="white_font full text_align_center">Productos Enlatados</h2>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+           <div class="col-md-4 margin_top_30">
+                <div class="full fr d-flex justify-content-center">
+                    <img class="img-responsive rounded" src="{{ url_for('static', filename= 'images/lata-atun.jfif') }}" width="90%" height="100%" alt="#" />
+                </div>
+                <br>
+                <div class="">
+                    <h3>Nombre: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Aqui va nombre del producto">
+                </div>
+                <div class="">
+                    <h3>Código: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Aqui va código del atún en lata">
+                </div>
+                <div>
+                    <h3>Características: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Caracteristicas del lote/cantidad por lote">
+                </div>
+                <div>
+                    <h3>Cantidades disponibles: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Unidades disponibles / Autoactualizable">
+                </div>
+                <div>
+                    <h3>Tipo de unidad: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Tipo de unidades/Latas = venta unidad">
+                </div>
+                <div>
+                    <h3>Precio por unidad: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Precio por unidad">
+                </div>
+                <div>
+                    <h3>Porcentaje de descuento: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Porcentaje de promoción / mantener en 0">
+                </div>
+                <div>
+                    <h3>Cantidades vendidas: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Cantidad vendidas / generado automaticamente">
+                </div>
+                <div>
+                    <h3>Calificacion del cliente: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Calificacion cliente / generado automaticamente">
+                </div>
+                <div class="mb-3 text-center">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Actualizar Valores</button>
+                </div>
+            </div>
+
+            <div class="col-md-4 margin_top_30">
+                <div class="full fr d-flex justify-content-center">
+                    <img class="img-responsive rounded" src="{{ url_for('static', filename= 'images/lata-sopa.png') }}" width="59%" height="59%" alt="#"/>
+                </div>
+                <br>
+                <div class="">
+                    <h3>Nombre: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Aqui va nombre del producto">
+                </div>
+                <div class="">
+                    <h3>Código: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Aqui va código del atún en lata">
+                </div>
+                <div>
+                    <h3>Características: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Caracteristicas del lote/cantidad por lote">
+                </div>
+                <div>
+                    <h3>Cantidades disponibles: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Unidades disponibles / Autoactualizable">
+                </div>
+                <div>
+                    <h3>Tipo de unidad: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Tipo de unidades/Latas = venta unidad">
+                </div>
+                <div>
+                    <h3>Precio por unidad: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Precio por unidad">
+                </div>
+                <div>
+                    <h3>Porcentaje de descuento: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Porcentaje de promoción / mantener en 0">
+                </div>
+                <div>
+                    <h3>Cantidades vendidas: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Cantidad vendidas / generado automaticamente">
+                </div>
+                <div>
+                    <h3>Calificacion del cliente: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Calificacion cliente / generado automaticamente">
+                </div>
+                <div class="mb-3 text-center">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Actualizar Valores</button>
+                </div>
+            </div>
+
+            <div class="col-md-4 margin_top_30">
+                <div class="full fr d-flex justify-content-center">
+                    <img class="img-responsive rounded" src="{{ url_for('static', filename= 'images/lata-verduras.png') }}"  width="48%" height="48%" alt="#" />
+                </div>
+                <br>
+                <div class="">
+                    <h3>Nombre: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Aqui va nombre del producto">
+                </div>
+                <div class="">
+                    <h3>Código: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Aqui va código del atún en lata">
+                </div>
+                <div>
+                    <h3>Características: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Caracteristicas del lote/cantidad por lote">
+                </div>
+                <div>
+                    <h3>Cantidades disponibles: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Unidades disponibles / Autoactualizable">
+                </div>
+                <div>
+                    <h3>Tipo de unidad: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Tipo de unidades/Latas = venta unidad">
+                </div>
+                <div>
+                    <h3>Precio por unidad: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Precio por unidad">
+                </div>
+                <div>
+                    <h3>Porcentaje de descuento: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Porcentaje de promoción / mantener en 0">
+                </div>
+                <div>
+                    <h3>Cantidades vendidas: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Cantidad vendidas / generado automaticamente">
+                </div>
+                <div>
+                    <h3>Calificacion del cliente: </h3>
+                    <input class="form-control form-control-lg" type="text" placeholder="Calificacion cliente / generado automaticamente">
+                </div>
+                <div class="mb-3 text-center">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Actualizar Valores</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div><br><br></div>
+{% endblock %}

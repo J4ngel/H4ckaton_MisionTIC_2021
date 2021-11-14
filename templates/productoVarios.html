@@ -1,0 +1,74 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Productos Edicion{% endblock %}
+
+{% block alertas %}
+    {% for message in get_flashed_messages() %}            
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block desarrollo %}
+<br><br><br>    
+<div class="col"></div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-4">
+        </div>
+        <div class="col-4 ">
+            <h2></h2>
+            <div class="imagen d-flex justify-content-center">
+            <img src="{{url_for('static',filename='images/alimentos.jpg')}}"  alt="User" width="100%">
+            </div>
+            <br>
+            <br>
+            <form action="/actualizar" method="post" >
+            <label for="id_field" class="form-label">Nombre del producto</label>
+            <input type="text" class="form-control" value={{produc[1]}}  name="nombre" id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Código del producto</label>
+            <input type="text" readonly class="form-control" value={{produc[0]}} id="id_field" name="idproduc">
+            <br>
+            <label for="id_field" class="form-label">Tipo de unidad de venta</label>
+            <input type="text" readonly class="form-control" value={{produc[4]}} id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Precio unitario</label>
+            <input type="text" class="form-control" value={{produc[5]}} name="precio" id="id_field">
+            <br>
+            <label for="id_field" class="form-label" >Cantidades disponible</label>
+            <input type="text" class="form-control" readonly value={{produc[3]}} id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Cantidades vendidas</label>
+            <input type="text" class="form-control" value={{produc[7]}} id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Porcentaje de descuento</label> 
+            <input type="text" class="form-control" value={{produc[6]}} name="porcentaje" id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Descuento acumulable</label>
+            <input type="text" class="form-control" value={{produc[11]}} id="id_field"> 
+            <br>
+            <label for="id_field" class="form-label">Categoria del producto</label>
+            <input type="text" class="form-control" readonly value={{produc[9]}} name="categoria" id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Tiene bono?</label>
+            <input type="text" class="form-control" readonly value={{produc[10]}} name="bono" id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Promedio de calificacion del cliente</label>
+            <input type="text" class="form-control" readonly value={{produc[13]}} id="id_field">
+            <br>
+            <button type="submit" class="btn btn-primary" id="btn-actualizar">Actualizar</button>
+            <button type="submit" class="btn btn-primary" id="btn-actualizar">Eliminar producto</button> 
+            </form>  
+        </div>
+
+        
+        <div class="col-4">
+        </div>
+
+    </div>
+    
+
+    <div class="col"></div>
+{% endblock %}

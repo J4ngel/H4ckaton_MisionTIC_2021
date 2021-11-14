@@ -1,0 +1,58 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Tienda{% endblock %}
+
+{% block alertas %}
+    {% for message in get_flashed_messages() %}            
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block desarrollo %}
+<h1></h1>
+<div class="container">
+    <div class="fila1">
+        <header>
+            <h1>Productos disponibles</h1>
+        </header>
+    </div>
+    <div class="fila2">
+        <section>
+            <table class="default">
+            <tr>
+                <div class="imagen"  >
+                    <img src="{{url_for('static',filename='images/alimentos.jpg')}}"  alt="producto" width="10%">
+                </div>
+                <th>Nombre del producto</th>
+                <th>Cantidad disponibles</th>
+                <th>Precio unitario</th>
+                <th>Descuento</th>
+                <th></th>
+            </tr>
+                <!--aqui se coloca el for-->
+            {% for d in data %}
+            <tr>
+                <td><input type="text" readonly name="codigo" id="codigo" value={{d[1]}}></td>
+                <td><input type="text" name="cantidad" id="cantidad" value={{d[3]}}></td>
+                <td><input type="text" readonly name="precio" id="precio" value={{d[5]}}></td>
+                <td><input type="text" readonly name="descuento" id="descuento" value={{d[6]}}></td>
+                <td><input type="submit" value="Agregar"></td>
+                
+            </tr>
+            {% endfor %}
+                <!--aqui se coloca el endfor-->
+            </table>
+        </section>
+     </div>
+     <div class="fila3">
+         <br>
+        <a href="/tienda/compras"><input type="button" value="Ir al carrito"></a> 
+        <a href=""><input type="button" value="Regresar"></a>
+     </div>
+</div>
+
+
+<div><br><br></div>
+{% endblock %}

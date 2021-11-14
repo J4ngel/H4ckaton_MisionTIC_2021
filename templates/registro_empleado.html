@@ -1,0 +1,96 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Registro{% endblock %}
+
+{% block alertas %}
+<div class="row" style="background-color: rgba(0,0,0,0.8);">
+    {% for message in get_flashed_messages() %}
+    <div class="col"></div>
+    <div class="col-6 text-center">
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    </div>
+    <div class="col"></div>
+    {% endfor %}
+</div>
+{% endblock%}
+
+{% block desarrollo %}
+    <div class="col" style="background-color: rgba(0,0,0,0.8);"></div>
+
+    <div class="col-3" style="color: white;background-color: rgba(0,0,0,0.8);">
+        <img src="{{url_for('static',filename='images/registro_img.png')}}" alt="Bienvenida"  width="60%" height="70%" style="position:absolute; left:20%; top:10%; z-index:-1;">
+        <form action="/registro/empleado" method="POST">
+            <p></p>
+            <div class="mb-3">
+                <label for="cedula_field" class="form-label">Cedula</label>
+                <input type="text" class="form-control" id="cedula_field" name="cedula" placeholder="Digite solo números">
+                <div id="info" class="form-text">No compartiremos tu cedula con nadie.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="name_field" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name_field" name="name" placeholder="Digite su nombre completo">
+            </div>
+            
+            <div class="mb-3">
+                <label for="job_field" class="form-label">Cargo:</label>
+                <input type="text" class="form-control" id="job_field" name="job" placeholder="Digite su cargo en la compañía">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="gender_field" class="form-label">Sexo</label>
+                <select class="form-control" id="inputGroupSelect01" id="gender_field" name="gender">
+                    <option selected value="0">Seleccione su sexo...</option>
+                    <option value="1">Masculino</option>
+                    <option value="2">Femenino</option>
+                </select>
+            </div>
+    
+            <div class="mb-3">
+                <label for="date_field" class="form-label">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="date_field" name="birthday" >
+            </div>
+    
+            <div class="mb-3">
+                <label for="city_field" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="city_field" name="city" placeholder="Digite su ciudad de domicilio">
+            </div>
+    
+            <div class="mb-3">
+                <label for="addr_field" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="addr_field" name="adds" placeholder="Digite su dirección de domicilio">
+            </div>
+
+            <div class="mb-3">
+                <label for="name_field" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="name_field" name="username" placeholder="Digite un nombre de usuario (user name)">
+            </div>
+
+            <div class="mb-3">
+                <label for="frase_field" class="form-label">Frase de recordatorio</label>
+                <input type="password" class="form-control" id="frase_field" name="phrase" placeholder="Digite una frase por si olvida su contraseña">
+            </div>
+
+            <div class="mb-3">
+                <label for="password_field" class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" id="password_field" name="password" placeholder="Debe contener minimo 8 caracteres con números letras y simbolos">
+            </div>
+    
+            <div class="mb-3">
+                <label for="checkin_field" class="form-label">Vuelva a escribir la contraseña</label>
+                <input type="password" class="form-control" id="checkin_field" name="check_pass">
+            </div>
+    
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input"  style="transform: scale(1.5);" id="politicas" name="conditions">
+                <label class="form-check-label" for="politicas">Acepta las politicas de privacidad y manejo de datos personales</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+            <p></p>
+        </form>   
+    </div>
+
+    <div class="col" style="background-color: rgba(0,0,0,0.8);"></div>   
+{% endblock %}

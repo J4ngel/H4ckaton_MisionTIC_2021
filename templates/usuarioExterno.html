@@ -1,0 +1,97 @@
+{%  extends "constantes.html" %}
+
+{% block title %}Usuario Externo{% endblock %}
+
+{% block alertas %}
+    {% for message in get_flashed_messages() %}            
+        <div class="alert alert-warning" style="margin-top:10px;" role="alert">
+            <b>{{ message }}</b>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block desarrollo %}
+    <br><br><br>
+    <div class="col"></div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-1">
+        </div>
+        <div class="col-4 ">
+            <div class="imagen d-flex justify-content-center">
+                <img src="{{url_for('static',filename='images/user.png')}}"  alt="User" width="40%">
+            </div>
+            <br>
+            <br>
+            <label for="id_field" class="form-label">Cedula</label>
+            <input type="text" readonly class="form-control" value={{cedula}} id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Fecha de Nacimiento</label>
+            <input type="text" readonly class="form-control" value={{fecha}} id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" value={{nombre}} id="id_field">
+            <br>
+            <label for="id_field" class="form-label">Sexo</label>
+            <input type="text" readonly class="form-control" value={{sexo}} id="id_field"><br>
+            <label for="id_field" class="form-label">Dirección</label>
+            <input type="text" class="form-control" value={{direccion}} id="id_field"><br>
+            <label for="id_field" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" value={{ciudad}} id="id_field">
+            <br>
+            <button type="button" class="btn btn-primary" id="btn-actualizar">Guardar cambios</button>
+            <a href="/eliminar_cuenta"><button type="button" class="btn btn-primary" id="btn-actualizar">Eliminar cuenta</button></a>
+        </div>
+
+        <div class="col-1 align-items-right">
+            <style>
+                .vl {
+                    border-left: 6px solid rgb(40, 95, 245);
+                    position: relative;
+                    left: 25px;
+                    height: 100%;
+                }
+            </style>
+            <div class="vl"></div>
+        </div>
+
+        <div class="col-5 text-left">
+            
+            <br>
+            <h1>Mi Perfil</h1>
+            <h2>{{usuario}}</h2>
+            <br>
+            <br>
+            <br>
+            <label for="id_frase" class="form-label">Contraseña actual</label>
+            <input type="password" class="form-control" placeholder="Frase de Seguridad (Escriba para cambiar)" id="id_frase" name="old_pass">
+            <br>
+            <label for="id_frase" class="form-label">Frase de Seguridad</label>
+            <input type="password" class="form-control" placeholder="Frase de Seguridad (Escriba para cambiar)" id="id_frase" name="phrase">
+            <br>
+            <button type="button" class="btn btn-primary" id="btn-frase">Guardar cambios</button>
+            <br>
+            <br>
+            <label for="id_cambiar" class="form-label">Cambiar Contraseña</label>
+            <input type="password" class="form-control" placeholder="Cambiar contraseña (Escriba para cambiar)" id="id_cambiar">
+            <br>
+            <label for="id_cambiar" class="form-label">Confirmar Contraseña</label>
+            <input type="password" class="form-control" placeholder="Confirmar contraseña (Escriba para cambiar)" id="id_cambiar">
+            <br>
+            <button type="button" class="btn btn-primary" id="btn-cambiar">Guardar cambios</button> 
+
+        </div>
+
+        <div class="col-1">
+        </div>
+
+        <!-- <div class="col-3 text-right">
+            <button type="button" class="btn btn-primary" id="btn-carro">Carrito</button> 
+            <button type="button" class="btn btn-primary" id="btn-">Wish List</button> 
+            <button type="button" class="btn btn-primary" id="btn-actualizar">Logout</button> 
+        </div> -->
+    </div>
+    
+
+    <div class="col"></div>
+{% endblock %}
