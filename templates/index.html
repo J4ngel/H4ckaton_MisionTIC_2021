@@ -60,7 +60,7 @@
                                         <li><a href="{{url_for('tienda')}}">Ir a la tienda</a></li>
                                         {% if session['rol'] == 1 %}
                                             <li><a href="{{url_for('usuario')}}">Perfil</a></li>
-                                            <li><a href="#contact">Carrito de compras</a></li>
+                                            <li><a href="{{url_for('carrito')}}">Carrito de compras</a></li> 
                                             <li><a href="{{url_for('logout')}}">logout</a></li>
                                         {% elif session['rol'] == 2 %}
                                             <li><a href="{{url_for('empleado')}}">Perfil</a></li>
